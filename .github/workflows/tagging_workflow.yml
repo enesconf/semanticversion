@@ -18,7 +18,7 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install bump2version
+    - name: Install bump2versionn
       run: pip install bump2version
 
     - name: Configure Git
