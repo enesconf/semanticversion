@@ -28,7 +28,7 @@ jobs:
 
     - name: Log in to Git using PAT
       run: |
-        git remote add origin https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
+        git clone https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
 
     - name: Bump version and tag
       run: |
