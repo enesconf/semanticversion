@@ -25,7 +25,7 @@ jobs:
       run: |
         git config --local user.email "enes46ctknya@gmail.com"
         git config --local user.name "enesconf"
-        git config --local user.password ${{ secrets.PASSWORD }}
+        git config --local user.password "${{ secrets.PASSWORD }}"
         git config --list
         CURRENT_VERSION=$(bump2version --dry-run --list patch | grep current_version | sed -r s,"^.*=",,)
         echo "Current version: $CURRENT_VERSION"
