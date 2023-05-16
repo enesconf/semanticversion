@@ -21,12 +21,18 @@ jobs:
     - name: Install bump2version
       run: pip install bump2version
 
+    - name: Configure Git
+      run: |
+        git config --global user.email "enes46ctknya@gmail.com"
+        git config --global user.name "enesconf"
+
+    - name: Log in to Git using PAT
+      run: |
+        git remote remove origin
+        git remote add origin https://${{ secrets.GH_PAT }}@github.com/USERNAME/REPOSITORY.git
+
     - name: Bump version and tag
       run: |
-        git config --local user.email "enes46ctknya@gmail.com"
-        git config --local user.name "enesconf"
-        git config --local user.password "${{ secrets.LOGIN_SECRET }}"
-        git config --list
         CURRENT_VERSION=$(bump2version --dry-run --list patch | grep current_version | sed -r s,"^.*=",,)
         echo "Current version: $CURRENT_VERSION"
         NEW_VERSION=$(bump2version --dry-run --list patch | grep new_version | sed -r s,"^.*=",,)
