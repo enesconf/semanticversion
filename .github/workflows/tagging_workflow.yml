@@ -1,0 +1,34 @@
+name: Semantic Versioning Tagging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install bump2version
+      run: pip install bump2version
+
+    - name: Bump version and tag
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        CURRENT_VERSION=$(bump2version --dry-run --list patch | grep current_version | sed -r s,"^.*=",,)
+        echo "Current version: $CURRENT_VERSION"
+        NEW_VERSION=$(bump2version --dry-run --list patch | grep new_version | sed -r s,"^.*=",,)
+        echo "New version: $NEW_VERSION"
+        bump2version patch
+        git push
+        git push --tags
