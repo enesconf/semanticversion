@@ -1,1 +1,1 @@
-# semanticversion
+# semanticversion v2
