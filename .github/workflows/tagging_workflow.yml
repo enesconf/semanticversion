@@ -20,7 +20,16 @@ jobs:
 
     - name: Install bump2versionn
       run: pip install bump2version
-        
+
+    - name: Configure Git
+      run: |
+        git config --global user.email "enes46ctknya@gmail.com"
+        git config --global user.name "enesconf"
+
+    - name: Log in to Git using PAT
+      run: |
+        git clone https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
+
     - name: Bump version and tag
       run: |
         CURRENT_VERSION=$(bump2version --dry-run --list patch | grep current_version | sed -r s,"^.*=",,)
