@@ -28,7 +28,6 @@ jobs:
 
     - name: Log in to Git using PAT
       run: |
-        git push --set-upstream origin main
         git remote add origin https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
 
     - name: Bump version and tag
