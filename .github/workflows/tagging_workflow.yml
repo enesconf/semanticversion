@@ -23,7 +23,7 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config --global user.email "action@github.com"
+        git config --global user.email "action@github.cvom"
         git config --global user.name "GitHub Action"
 
     - name: Log in to Git using PAT
