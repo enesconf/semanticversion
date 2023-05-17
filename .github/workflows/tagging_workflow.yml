@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GH_PAT }}
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -27,6 +25,11 @@ jobs:
       run: |
         git config --global user.email "workflow@github.com"
         git config --global user.name "workflow"
+        
+    - name: Log in to Git using PAT
+      run: |
+        git remote remove origin
+        git remote add origin https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
 
     - name: Bump version and tag
       run: |
