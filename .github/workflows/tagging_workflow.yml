@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_PAT }}
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -23,12 +25,8 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config --global user.email "enes46ctknya@gmail.com"
-        git config --global user.name "enesconf"
-
-    - name: Log in to Git using PAT
-      run: |
-        git clone https://${{ secrets.GH_PAT }}@github.com/enesconf/semanticversion.git
+        git config --global user.email "workflow@github.com"
+        git config --global user.name "workflow"
 
     - name: Bump version and tag
       run: |
