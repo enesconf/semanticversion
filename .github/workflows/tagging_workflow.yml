@@ -20,11 +20,6 @@ jobs:
 
     - name: Install bump2versionn
       run: pip install bump2version
-
-    - name: Configure Git
-      run: |
-        git config --global user.email "workflow@github.com"
-        git config --global user.name "workflow"
         
     - name: Bump version and tag
       run: |
