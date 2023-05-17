@@ -1,1 +1,1 @@
-# semanticversion v3
+# semanticversion v6
